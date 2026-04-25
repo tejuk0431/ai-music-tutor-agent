@@ -1,0 +1,24 @@
+{
+    "students": [
+        {
+            "name": "Ananya",
+            "age": 8,
+            "level": "beginner",
+            "goal": "learn Carnatic basics",
+            "learning_style": "slow step-by-step explanations",
+            "completed_lessons": [],
+            "mistakes": [],
+            "confidence_history": []
+        },
+        {
+            "name": "Tejaswini Kadali",
+            "age": 25,
+            "level": "beginner",
+            "goal": "to learn basics",
+            "learning_style": "",
+            "completed_lessons": [],
+            "mistakes": [],
+            "confidence_history": []
+        }
+    ]
+}
