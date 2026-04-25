@@ -1,3 +1,7 @@
+# AI Music Tutor Agent
+
+An AI-powered personalized music learning agent that creates lesson plans, quizzes, tracks student progress, and recommends next learning steps.
+
 ## AI Agent Capabilities
 
 - Maintains student profile
@@ -5,10 +9,6 @@
 - Generates structured lesson plans
 - Creates quizzes
 - Recommends next learning steps dynamically
-
-# AI Music Tutor Agent
-
-An AI-powered personalized music learning agent that creates lesson plans, quizzes, tracks student progress, and recommends next learning steps.
 
 ## Features
 
@@ -29,32 +29,33 @@ An AI-powered personalized music learning agent that creates lesson plans, quizz
 - Pydantic
 - JSON-based memory
 - Streamlit
+- Render
 
 ## API Endpoints
 
 ### Home
-**GET /**
+`GET /`
 
 ### Create Student Profile
-**POST /student-profile**
+`POST /student-profile`
 
 ### Generate Lesson Plan
-**POST /lesson-plan**
+`POST /lesson-plan`
 
 ### Generate Quiz
-**POST /quiz**
+`POST /quiz`
 
 ### Update Progress
-**POST /progress**
+`POST /progress`
 
 ### Recommend Next Step
-**POST /recommend-next-step**
+`POST /recommend-next-step`
 
 ## Run Locally
 
 Install dependencies:
 
-```bash
+###bash
 python -m pip install -r requirements.txt
 
 ## Screenshots
