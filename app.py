@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import json
 
 API_URL = "https://ai-music-tutor-agent.onrender.com"
 
@@ -29,11 +30,13 @@ def show_response(res):
     return data
 
 
+# ------------------ CREATE PROFILE ------------------
+
 if st.button("Create Profile"):
     if not name or not goal or not style:
         st.warning("Please fill all fields.")
     else:
-        data = {
+        payload = {
             "name": name,
             "age": age,
             "level": level,
@@ -41,7 +44,7 @@ if st.button("Create Profile"):
             "learning_style": style
         }
 
-        res = requests.post(f"{API_URL}/student-profile", json=data)
+        res = requests.post(f"{API_URL}/student-profile", json=payload)
         data = show_response(res)
 
         if data:
@@ -49,6 +52,8 @@ if st.button("Create Profile"):
             st.subheader("Student Profile")
             st.json(data)
 
+
+# ------------------ GENERATE LESSON ------------------
 
 if st.button("Generate Lesson"):
     if not name:
@@ -68,4 +73,31 @@ if st.button("Generate Lesson"):
             st.write(data.get("student"))
 
             st.subheader("Lesson Plan")
-            st.markdown(data.get("lesson_plan", "No lesson plan generated"))
+
+            lesson_plan_raw = data.get("lesson_plan", "{}")
+
+            try:
+                lesson_plan = json.loads(lesson_plan_raw)
+
+                st.markdown(f"### 🎼 {lesson_plan.get('lesson_title', 'Lesson')}")
+
+                st.markdown("### 📘 Concept Explanation")
+                st.write(lesson_plan.get("concept_explanation", ""))
+
+                st.markdown("### 🎯 Practice Plan")
+                for step in lesson_plan.get("practice_plan", []):
+                    st.write(f"- {step}")
+
+                st.markdown("### ⚠️ Common Mistakes")
+                for mistake in lesson_plan.get("common_mistakes", []):
+                    st.write(f"- {mistake}")
+
+                st.markdown("### 📝 Homework")
+                st.write(lesson_plan.get("homework", ""))
+
+                st.markdown("### 🚀 Next Step")
+                st.write(lesson_plan.get("next_step", ""))
+
+            except Exception:
+                # fallback if parsing fails
+                st.write(lesson_plan_raw)
