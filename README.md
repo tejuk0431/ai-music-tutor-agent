@@ -56,3 +56,9 @@ Install dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
+
+## Screenshots
+### UI Demo
+![UI](profile1.png) 
+### lesson plan
+![Swagger](profile2.png)
