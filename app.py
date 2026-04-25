@@ -20,13 +20,13 @@ def show_response(res):
         st.error("Backend did not return JSON.")
         st.write("Status code:", res.status_code)
         st.write("Raw response:", res.text)
-        return
+        return None
 
     if res.status_code >= 400:
         st.error(data)
-    else:
-        st.success("Success")
-        st.write(data)
+        return None
+
+    return data
 
 
 if st.button("Create Profile"):
@@ -42,7 +42,12 @@ if st.button("Create Profile"):
         }
 
         res = requests.post(f"{API_URL}/student-profile", json=data)
-        show_response(res)
+        data = show_response(res)
+
+        if data:
+            st.success("Profile created successfully")
+            st.subheader("Student Profile")
+            st.json(data)
 
 
 if st.button("Generate Lesson"):
@@ -53,4 +58,14 @@ if st.button("Generate Lesson"):
             f"{API_URL}/lesson-plan",
             json={"student_name": name}
         )
-        show_response(res)
+
+        data = show_response(res)
+
+        if data:
+            st.success("Lesson generated successfully")
+
+            st.subheader("Student")
+            st.write(data.get("student"))
+
+            st.subheader("Lesson Plan")
+            st.markdown(data.get("lesson_plan", "No lesson plan generated"))
