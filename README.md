@@ -64,4 +64,4 @@ python -m pip install -r requirements.txt
 ### lesson plan
 ![Swagger](profile2.png)
 ### lessons
-![Swagger](lesson.png)
+![Streamlit](lesson.png)
